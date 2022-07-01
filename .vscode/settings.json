@@ -1,0 +1,21 @@
+{
+  "editor.rulers": [100],
+  "files.autoSave": "off",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "search.exclude": { "lib": true },
+  "files.associations": {
+    ".gas-snapshot": "julia"
+  },
+  "solidity.compileUsingRemoteVersion": "v0.8.15"
+  // "solidity.packageDefaultDependenciesContractsDirectory": "src",
+  // "solidity.packageDefaultDependenciesDirectory": "lib"
+}
