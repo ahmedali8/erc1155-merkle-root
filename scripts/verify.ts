@@ -6,15 +6,13 @@ import { verifyContract } from "../utils/verify";
 async function main() {
   const { chainId } = await ethers.provider.getNetwork();
 
+  const USDT_CONTRACT = "";
+  const WALLET_ADDRESS = "";
+
   const contractName = "Token";
   const contractPath = `contracts/${contractName}.sol:${contractName}`;
   const contractAddress = "";
-  const args: any[] = [
-    "TokenName",
-    "TCT",
-    toWei("6000000"),
-    "0xde43f899587aaa2Ea6aD243F3d68a5027F2C6a94",
-  ];
+  const args: any[] = [USDT_CONTRACT, WALLET_ADDRESS];
 
   // You don't want to verify on localhost
   if (chainId != 31337 && chainId != 1337) {

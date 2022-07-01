@@ -11,13 +11,27 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  const CONTRACT_NAME = "Token";
-
-  await preDeploy({ signerAddress: deployer, contractName: CONTRACT_NAME });
-  const deployResult: DeployResult = await deploy(CONTRACT_NAME, {
+  await preDeploy({
+    signerAddress: deployer,
+    contractName: "TestUSDT",
+  });
+  const usdtDeployResult = await deploy("TestUSDT", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: ["testing new created token", "TCT", toWei("6000000"), deployer],
+    args: [],
+    log: true,
+    // waitConfirmations: 5,
+  });
+
+  const USDT_CONTRACT = usdtDeployResult.address;
+  const WALLET_ADDRESS = deployer;
+
+  const CONTRACT_NAME = "Token";
+  await preDeploy({ signerAddress: deployer, contractName: CONTRACT_NAME });
+  const tokenDeployResult: DeployResult = await deploy(CONTRACT_NAME, {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    args: [USDT_CONTRACT, WALLET_ADDRESS],
     log: true,
     // waitConfirmations: 5,
   });
@@ -28,8 +42,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       const contractPath = `contracts/${CONTRACT_NAME}.sol:${CONTRACT_NAME}`;
       await verifyContract({
         contractPath: contractPath,
-        contractAddress: deployResult.address,
-        args: deployResult.args || [],
+        contractAddress: tokenDeployResult.address,
+        args: tokenDeployResult.args || [],
       });
     }
   } catch (error) {
