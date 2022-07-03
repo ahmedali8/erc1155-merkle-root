@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests Token Effects Functions mint when usdt is approved when user mints 10 tokens increases the balance of the user 1`] = `115021`;

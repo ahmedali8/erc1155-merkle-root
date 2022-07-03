@@ -1,5 +1,6 @@
 import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import { formatUnits, parseUnits } from "@ethersproject/units";
+import fromExponential from "from-exponential";
 
 /**
  * Return the `labelValue` converted to string as Billions, Millions, Thousands etc.
@@ -45,6 +46,14 @@ export function omitEndZeros(value: number): string | undefined {
  * @return BigNumber value
  */
 export function toBN(value: string | number | bigint): BigNumber {
+  if (typeof value === "string") {
+    let xs: string = value;
+    if (value.includes("e")) {
+      xs = fromExponential(value);
+    }
+    return BigNumber.from(xs);
+  }
+
   return BigNumber.from(value);
 }
 
