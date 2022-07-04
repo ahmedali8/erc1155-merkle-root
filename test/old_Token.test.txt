@@ -6,7 +6,16 @@ import { ethers } from "hardhat";
 import { MerkleDistributorInfo, parseBalanceMap } from "../scripts/merkleroot/parse-balance-map";
 import { TestUSDT, TestUSDT__factory, Token, Token__factory } from "../src/types";
 import { randomInteger, toBN, toWei } from "../utils/format";
-import { Errors } from "./Errors";
+
+export const Errors = {
+  InvalidRoot: "InvalidRoot()",
+  InvalidPrice: "InvalidPrice()",
+  InvalidProof: "InvalidProof()",
+  AlreadyClaimed: "AlreadyClaimed()",
+  URIAlreadySet: "URIAlreadySet()",
+  MaxTenMintsPerTxn: "MaxTenMintsPerTxn()",
+  MaxSupplyLimitReached: "MaxSupplyLimitReached()",
+};
 
 const DEBUG = true;
 

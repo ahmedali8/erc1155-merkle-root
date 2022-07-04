@@ -1,4 +1,5 @@
 import shouldBehaveLikeClaim from "./effects/claim";
+import shouldBehaveLikeFreeMint from "./effects/freeMint";
 import shouldBehaveLikeMint from "./effects/mint";
 import shouldBehaveLikeERC20BalanceOf from "./view/balanceOf";
 import shouldBehaveLikeMaxSupplyGetter from "./view/maxSupply";
@@ -61,6 +62,10 @@ export function shouldBehaveLikeToken(): void {
 
     describe("claim", function () {
       shouldBehaveLikeClaim();
+    });
+
+    describe("freeMint", function () {
+      shouldBehaveLikeFreeMint();
     });
   });
 }
